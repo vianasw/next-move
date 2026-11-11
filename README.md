@@ -137,3 +137,7 @@ All routes except `session` and `guide` need `Authorization: Bearer nmk_...`.
 - OAuth for ChatGPT and Claude.ai connectors (step 3 of the plan).
 - Importing application statuses and notes from the old single-user app. Its research imports through the agent API unchanged.
 - Cleaning up expired handoff codes. They're harmless, but they accumulate.
+
+## License
+
+GPL-3.0. See [LICENSE](LICENSE).

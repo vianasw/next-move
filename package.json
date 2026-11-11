@@ -1,6 +1,7 @@
 {
   "name": "nextmove",
   "private": true,
+  "license": "GPL-3.0-only",
   "type": "module",
   "dependencies": {
     "@spacefast/zero": "0.8.0",
