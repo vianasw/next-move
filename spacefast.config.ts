@@ -1,7 +1,7 @@
 import { defineConfig } from "spacefast/config";
 
 export default defineConfig({
-  "name": "Nextmove",
+  "name": "Next move",
   "runtime": {
     "kind": "zero",
     "server": "server/index.ts",

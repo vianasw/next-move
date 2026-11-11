@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "accent",
+          "color": "#2f6b4f",
+          "name": "Accent"
+        },
+        {
+          "slug": "background",
+          "color": "#f7f8f3",
+          "name": "Background"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "body",
+          "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "name": "Body"
+        }
+      ]
+    }
+  }
+}

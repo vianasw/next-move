@@ -1,3 +1,17 @@
+# Next move: project rules
+
+Read README.md first. These rules protect the security model:
+
+- Agent-facing code (REST in `server/index.ts`, MCP in `server/mcp.ts`) must go through `server/data.ts`. Agents may never change application `status` or `notes`, never read notes, and never touch another owner's rows.
+- Validate a whole batch before the first write. Rethrow unexpected errors from endpoints so the transaction rolls back; only `ContractError`/`RequestError` become 4xx responses.
+- Never store a plaintext code or key; store `hashSecret()` output only.
+- Membership lives in `server/access.ts`. Every user path checks `memberOrNull`/`requireMember`, and every agent path re-checks `isMember` (through `authenticateAgent` or `redeemHandoff`), so blocking someone stops their agents on the next request.
+- `.env.server` is synced to production by `sf publish`. Never put test-only or local-only values in it.
+- Never put `DATA_KEY` in `.env.server`: a publish would replace the production key and make every encrypted value unreadable. It's set once with `sf env set --secret --value-from-stdin`.
+- Private fields are encrypted (`server/sealed.ts` lists them). Write them through `seal`/`sealFields` and read them through `openRow`; never return or compare their stored values directly. Owner IDs and emails are keyed hashes from `server/vault.ts`, never raw account IDs or addresses.
+- When overriding a header on `json()`/`text()`, use their exact casing (`Content-Type`). A lowercase duplicate passes `sf dev` but production answers 500 `zero_response_header_invalid`.
+- Run `npm test` and `npm run typecheck` before publishing.
+
 # Spacefast Zero App Instructions
 
 This directory is a capsule app built on Spacefast Zero. Zero is the runtime:
