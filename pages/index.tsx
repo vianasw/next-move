@@ -8,11 +8,12 @@ import { JobDetail } from "../client/JobDetail";
 import type { Job, Workspace } from "../client/types";
 import { Chip, CompanyMark, FitBadge, NewBadge, PageHeading, Select, formatDate, isNew, needsRecheck, trackSalary } from "../client/ui";
 
-type View = "active" | "applied" | "interviewing" | "offer" | "closed_out" | "not_interested";
+type View = "active" | "shortlisted" | "applied" | "interviewing" | "offer" | "closed_out" | "not_interested";
 type Sort = "fit" | "found" | "verified" | "company" | "activity";
 
 const VIEWS: { id: View; label: string; matches: (status: Status) => boolean }[] = [
   { id: "active", label: "In play", matches: (s) => !["rejected", "withdrawn", "not_interested"].includes(s) },
+  { id: "shortlisted", label: "Shortlisted", matches: (s) => s === "shortlisted" },
   { id: "applied", label: "Applied", matches: (s) => s === "applied" },
   { id: "interviewing", label: "Interviewing", matches: (s) => s === "interviewing" },
   { id: "offer", label: "Offers", matches: (s) => s === "offer" },
